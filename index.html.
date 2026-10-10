@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBSIDIANPEAK SMP — Магазин монет</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background:
+        radial-gradient(ellipse at top, #352052 0%, transparent 55%),
+        linear-gradient(180deg, #100d1b, #171126 55%, #090810);
+    min-height: 100vh;
+}
+
+header {
+    padding: 25px 15px;
+    text-align: center;
+    border-bottom: 1px solid #65408c;
+    background: rgba(10, 8, 18, 0.85);
+}
+
+.logo {
+    font-size: clamp(25px, 6vw, 42px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #d8b4ff;
+    text-shadow: 0 0 20px #8b42db;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #c6b8d9;
+    font-size: 14px;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 30px;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 6vw, 45px);
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #c084fc;
+}
+
+.hero p {
+    color: #c6bdd5;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: auto;
+}
+
+.currency {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 25px auto 35px;
+}
+
+.currency button {
+    background: #21172f;
+    border: 1px solid #694293;
+    color: white;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.currency button.active,
+.currency button:hover {
+    background: #8b45cb;
+    border-color: #c084fc;
+}
+
+.shop {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 16px 55px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: linear-gradient(145deg, #21172f, #130f1d);
+    border: 1px solid #4f326d;
+    border-radius: 17px;
+    padding: 27px 18px;
+    text-align: center;
+    box-shadow: 0 8px 25px #0004;
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #bd83ff;
+    box-shadow: 0 10px 30px #9b4dff22;
+}
+
+.coin {
+    font-size: 48px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 12px #b66cff66);
+}
+
+.card h2 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #bdb0ce;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: #d8b4ff;
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 22px;
+}
+
+.buy {
+    display: block;
+    width: 100%;
+    color: white;
+    background: linear-gradient(135deg, #8b45cb, #632ca1);
+    border: 1px solid #c084fc;
+    padding: 13px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.buy:hover {
+    background: linear-gradient(135deg, #a75be9, #7c3db9);
+}
+
+.info {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    padding: 30px 20px;
+    text-align: center;
+    background: #171122;
+    border: 1px solid #694293;
+    border-radius: 15px;
+    line-height: 1.8;
+    scroll-margin-top: 25px;
+}
+
+.info h2 {
+    margin-bottom: 12px;
+    color: #d8b4ff;
+    font-size: 26px;
+}
+
+.info p {
+    color: #c8bfd3;
+}
+
+.username {
+    font-size: 25px;
+    color: #d8b4ff !important;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.telegram {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    margin: 15px auto 0;
+    padding: 14px 16px;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.seller {
+    background: linear-gradient(135deg, #8b45cb, #632ca1);
+    border: 1px solid #c084fc;
+}
+
+.channel {
+    background: #1679bd;
+    border: 1px solid #55b8ff;
+}
+
+.telegram:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+#copyStatus {
+    margin-top: 18px;
+    color: #d8b4ff;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    padding: 25px 15px;
+    text-align: center;
+    background: #090810;
+    border-top: 1px solid #332344;
+    color: #9587a7;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding-top: 38px;
+    }
+
+    .shop {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+    }
+
+    .info {
+        margin-left: 14px;
+        margin-right: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">OBSIDIANPEAK</div>
+    <div class="subtitle">SMP • Официальный магазин монет</div>
+</header>
+
+<section class="hero">
+    <h1>Магазин <span>монет</span></h1>
+    <p>
+        Пополняй баланс на OBSIDIANPEAK SMP!
+        Выбирай набор монет и оформляй заказ.
+    </p>
+</section>
+
+<div class="currency">
+    <button id="uahBtn" class="active"
+        onclick="setCurrency('UAH')">
+        ₴ Гривны
+    </button>
+
+    <button id="rubBtn"
+        onclick="setCurrency('RUB')">
+        ₽ Рубли
+    </button>
+</div>
+
+<main class="shop">
+
+    <div class="card">
+        <div class="coin">🪙</div>
+        <h2>100 монет</h2>
+        <p>Стартовый набор</p>
+        <div class="price" data-uah="10">10 ₴</div>
+        <button class="buy" onclick="buyCoins()">
+            Купить монеты
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="coin">🪙</div>
+        <h2>500 монет</h2>
+        <p>Выгодный выбор</p>
+        <div class="price" data-uah="25">25 ₴</div>
+        <button class="buy" onclick="buyCoins()">
+            Купить монеты
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="coin">💰</div>
+        <h2>1 000 монет</h2>
+        <p>Больше возможностей</p>
+        <div class="price" data-uah="40">40 ₴</div>
+        <button class="buy" onclick="buyCoins()">
+            Купить монеты
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="coin">💰</div>
+        <h2>5 000 монет</h2>
+        <p>Для активной игры</p>
+        <div class="price" data-uah="100">100 ₴</div>
+        <button class="buy" onclick="buyCoins()">
+            Купить монеты
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="coin">💎</div>
+        <h2>10 000 монет</h2>
+        <p>Большой набор</p>
+        <div class="price" data-uah="150">150 ₴</div>
+        <button class="buy" onclick="buyCoins()">
+            Купить монеты
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="coin">👑</div>
+        <h2>100 000 монет</h2>
+        <p>Максимальный набор</p>
+        <div class="price" data-uah="500">500 ₴</div>
+        <button class="buy" onclick="buyCoins()">
+            Купить монеты
+        </button>
+    </div>
+
+</main>
+
+<section class="info" id="telegram">
+    <h2>📩 За покупкой писать</h2>
+
+    <p class="username">@Ne_Pon4ik</p>
+
+    <button class="telegram seller"
+        onclick="copyTelegram('https://t.me/Ne_Pon4ik', this)">
+        📋 Скопировать ссылку продавца
+    </button>
+
+    <p style="margin-top: 30px;">📢 Telegram-канал сервера</p>
+
+    <button class="telegram channel"
+        onclick="copyTelegram('https://t.me/ObsidianPeak1', this)">
+        📋 Скопировать ссылку на канал
+    </button>
+
+    <p id="copyStatus" aria-live="polite"></p>
+</section>
+
+<footer>
+    © 2026 OBSIDIANPEAK SMP<br>
+    Minecraft SMP • Магазин монет
+</footer>
+
+<script>
+let currency = "UAH";
+
+// Условный коэффициент, не актуальный курс валют.
+const RUB_RATE = 2;
+
+function formatPrice(amount) {
+    if (currency === "RUB") {
+        return Math.round(amount * RUB_RATE) + " ₽";
+    }
+
+    return amount + " ₴";
+}
+
+function setCurrency(value) {
+    currency = value;
+
+    document.getElementById("uahBtn")
+        .classList.toggle("active", value === "UAH");
+
+    document.getElementById("rubBtn")
+        .classList.toggle("active", value === "RUB");
+
+    document.querySelectorAll(".price").forEach(price => {
+        price.textContent = formatPrice(
+            Number(price.dataset.uah)
+        );
+    });
+}
+
+function buyCoins() {
+    document.getElementById("telegram").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+async function copyTelegram(link, button) {
+    const status = document.getElementById("copyStatus");
+
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(link);
+        } else {
+            const area = document.createElement("textarea");
+            area.value = link;
+            area.style.position = "fixed";
+            area.style.left = "-9999px";
+            document.body.appendChild(area);
+            area.focus();
+            area.select();
+
+            const copied = document.execCommand("copy");
+            area.remove();
+
+            if (!copied) {
+                throw new Error("Не удалось скопировать");
+            }
+        }
+
+        status.textContent = "✅ Ссылка скопирована: " + link;
+        button.textContent = "✅ Ссылка скопирована!";
+    } catch (error) {
+        status.textContent =
+            "Не удалось скопировать автоматически. Скопируй вручную: " + link;
+    }
+}
+</script>
+
+</body>
+</html>
